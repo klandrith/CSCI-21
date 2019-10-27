@@ -1,0 +1,61 @@
+week 7 notes
+
+compiler flag
+
+-std=c++11
+
+----------------------------------
+
+using std::array;
+array<type, size> arrayname;
+
+with std::array you can use .at()
+
+with primitive array you can only use []
+
+with std::array you can .size()
+
+std::vector
+
+vector<double> temps;
+vector<char> letters;
+vector<string> messages;
+temps.push_back(1.92);
+cout << temp.size(); (1)
+temp[0] = 3.5;
+temp.at(0) = 3.5;
+
+for (int i = 0; i < messages.size(); i++) {
+    cout << messages[i];
+
+}
+
+
+(for each loop, double called d in temps cycle)
+
+for (double d : temps) {
+    cout << d;
+
+}
+
+(for each loop 
+
+for (string m : messages) {
+
+    cout << m;
+
+}
+
+for (char &c : s) {
+    c = toupper(c);
+}
+
+
+(auto will automatically detect type)
+
+for (auto& c : s) {
+
+    cout << c;
+    
+}
+

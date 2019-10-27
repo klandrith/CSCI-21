@@ -1,0 +1,33 @@
+STL structures
+
+par<string, int> p1
+map<string, float> m1
+
+iterators
+
+vector<int> v1;
+vector<int>::iterator i;
+
+i = v1.begin;
+cout << *i;
+
+for (i = v1.begin(); i != v1.end(); i++)
+{
+    cout << *i;
+}
+
+for (int i : v1) {
+cout << i;
+}
+
+(*i).name
+i->name
+basket.erase(basket.end() - 1)
+
+for (int i; i < basket.size(); i++) {
+    if(basket[i].name = "apple") {
+        basket.erase(basket.size() + i);
+        break;
+    }
+}
+

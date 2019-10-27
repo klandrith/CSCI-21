@@ -1,0 +1,10 @@
+orange:3
+apple:2
+grape:50
+banana:6
+cherry:24
+kiwi:4
+raspberry:18
+grapefruit:2
+pineapple:1
+strawberry:12

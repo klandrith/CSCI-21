@@ -1,0 +1,15 @@
+OPERATION codes + descriptions
+
+CODE [argument] : description
+
+# any text      : ignore as comment
+C               : create dynamic tree instance
+X               : clear the current tree instance of contents
+D               : delete the dynamic tree instance and set to nullptr
+I word          : insert word (string) into the tree
+F word          : find word (string) in the tree
+R word          : remove word (string) from the tree
+G word          : get word (string) from the tree
+N               : return the size (number of nodes) of the tree
+O               : in order print 
+E               : reverse order print

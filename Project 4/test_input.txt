@@ -1,0 +1,13 @@
+C
+N
+I apple
+I apple
+I apple
+F apple
+F turd
+G apple
+O
+N
+R apple
+O
+N

@@ -1,0 +1,38 @@
+OUTPUTS (testing will expect outputs to match EXACTLY)
+
+OUTPUT                     : operation / notes
+
+MUST CREATE TREE INSTANCE  : any operation executed when dynamic tree is nullptr
+                           : * with the exception of C (create)
+
+TREE CREATED               : C / if an instance already exists, delete it first
+TREE CLEARED               : X
+TREE DELETED               : D / and set the pointer to nullptr
+
+WORD w INCREMENTED         : I w / if w is already in the tree
+WORD w INSERTED            : I w / if w is NOT already in the tree
+
+FOUND w                    : F w / replace w with the string
+or w NOT FOUND
+or TREE EMPTY
+
+REMOVED w                  : R w / replace w with the string
+or w NOT FOUND
+or TREE EMPTY
+
+GOT w count                : G w / w is the string, count is the counter value
+or w NOT FOUND
+
+TREE SIZE IS n             : N / replace n with tree size
+
+************************************************************************************
+* For in order print (O) and reverse order print (E):
+
+TREE EMPTY                 : if tree is empty
+or output the words in ascending order, including their count (separated by a space), one entry per line
+
+example:
+
+apple 3
+banana 2
+cherry 4

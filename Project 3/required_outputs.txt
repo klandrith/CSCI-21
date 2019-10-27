@@ -1,0 +1,39 @@
+OUTPUTS (testing will expect outputs to match EXACTLY)
+
+OUTPUT                     : operation / notes
+
+MUST CREATE LIST INSTANCE  : any operation executed when dynamic list is nullptr
+                           : * with the exception of C (create)
+
+LIST CREATED               : C / if an instance already exists, delete it first
+LIST CLEARED               : X
+LIST DELETED               : D / and set the pointer to nullptr
+VALUE n INSERTED           : I n / replace n with the value
+VALUE n ADDED TO HEAD      : F n / replace n with the value
+VALUE n ADDED TO TAIL      : B n / replace n with the value
+
+VALUE n ELIMINATED
+or VALUE n NOT FOUND       : E n / replace n with the value
+
+VALUE n REMOVED
+or VALUE n NOT FOUND       : R n / replace n with the value
+
+VALUE n FOUND
+or VALUE n NOT FOUND       : G n / replace n with the value
+
+VALUE n AT HEAD
+or LIST EMPTY              : A / replace n with the value
+
+VALUE n AT TAIL
+or LIST EMPTY              : Z / replace n with the value
+
+REMOVED HEAD
+or LIST EMPTY              : T
+
+REMOVED TAIL
+or LIST EMPTY              : K
+
+LIST SIZE IS n             : N / replace n with list size
+
+n1,n2,n3,...
+or LIST EMPTY              : P / replace n1,n2,n3,... with values from list

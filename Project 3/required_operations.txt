@@ -1,0 +1,20 @@
+OPERATION codes + descriptions
+
+CODE [argument] : description
+
+# any text      : ignore as comment
+C               : create dynamic list instance
+X               : clear the current list instance of contents
+D               : delete the dynamic list instance and set to nullptr
+I number        : insert number into list (sorted)
+F number        : add number to front of list
+B number        : add number to back of list
+E number        : eliminate all occurrences of number from the list
+R number        : remove the first occurrence of number from the list
+G number        : get number from the list
+A               : return contents of head node
+Z               : return contents of tail node
+T               : pop the head node
+K               : pop the tail node
+N               : return the size of the list
+P               : print all items in the list
