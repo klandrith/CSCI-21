@@ -106,8 +106,8 @@ void InputOutput(string filename) {
             string stringvalue = input.substr(pos + 1);
             stringvalue = rmCarriageReturn(stringvalue);
             int value;
-            bool error = stringToInt(stringvalue, value);
-            if (!error) {
+            bool success = stringToInt(stringvalue, value);
+            if (success) {
               list->insertSorted(value);
               cout << "VALUE " << value << " INSERTED" << endl;
             }
@@ -123,8 +123,8 @@ void InputOutput(string filename) {
             string stringvalue = input.substr(pos + 1);
             stringvalue = rmCarriageReturn(stringvalue);
             int value;
-            bool error = stringToInt(stringvalue, value);
-            if (!error) {
+            bool success = stringToInt(stringvalue, value);
+            if (success) {
               list->insertFront(value);
               cout << "VALUE " << value << " ADDED TO HEAD" << endl;
             }
@@ -140,8 +140,8 @@ void InputOutput(string filename) {
             string stringvalue = input.substr(pos + 1);
             stringvalue = rmCarriageReturn(stringvalue);
             int value;
-            bool error = stringToInt(stringvalue, value);
-            if (!error) {
+            bool success = stringToInt(stringvalue, value);
+            if (success) {
               list->insertBack(value);
               cout << "VALUE " << value << " ADDED TO TAIL" << endl;
             }
@@ -157,8 +157,8 @@ void InputOutput(string filename) {
             string stringvalue = input.substr(pos + 1);
             stringvalue = rmCarriageReturn(stringvalue);
             int value;
-            bool error = stringToInt(stringvalue, value);
-            if (!error) {
+            bool success = stringToInt(stringvalue, value);
+            if (success) {
               bool eliminated = list->eliminateAllOf(value);
               if (eliminated) {
                 cout << "VALUE " << value << " ELIMINATED" << endl;
@@ -179,8 +179,8 @@ void InputOutput(string filename) {
             string stringvalue = input.substr(pos + 1);
             stringvalue = rmCarriageReturn(stringvalue);
             int value;
-            bool error = stringToInt(stringvalue, value);
-            if (!error) {
+            bool success = stringToInt(stringvalue, value);
+            if (success) {
               bool eliminated = list->eliminateFirstOf(value);
               if (eliminated) {
                 cout << "VALUE " << value << " REMOVED" << endl;
@@ -201,8 +201,8 @@ void InputOutput(string filename) {
             string stringvalue = input.substr(pos + 1);
             stringvalue = rmCarriageReturn(stringvalue);
             int value;
-            bool error = stringToInt(stringvalue, value);
-            if (!error) {
+            bool success = stringToInt(stringvalue, value);
+            if (success) {
               if (list->get(value)) {
                 cout << "VALUE " << value << " FOUND" << endl;
               }
@@ -320,9 +320,9 @@ string rmCarriageReturn(string input) {
 bool stringToInt(string input, int &value) {
   try {
     value = stoi(input);
-    return false;
+    return true;
   } catch (const exception &e) {
     cerr << "Error: " << e.what() << " called on invalid string" << endl;
   }
-  return true;
+  return false;
 }
