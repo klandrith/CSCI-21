@@ -38,8 +38,8 @@ int main (int argc, char *argv[]) {
 
   // create InputOutput class instance and call IO function
   // and pass in filename
-  InputOutput myio;
-  myio.IOFunction(argv[1]);
+  InputOutput io;
+  io.IOFunction(argv[1]);
 
   return 0;
 }

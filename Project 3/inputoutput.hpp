@@ -4,6 +4,28 @@
     Class declaration and implementation for an inputoutput function
     to take in a filename and handle the IO for a double linked
     list program.
+
+    OPERATION codes + descriptions
+
+    CODE [argument] : description
+
+    # any text      : ignore as comment
+    C               : create dynamic list instance
+    X               : clear the current list instance of contents
+    D               : delete the dynamic list instance and set to nullptr
+    I number        : insert number into list (sorted)
+    F number        : add number to front of list
+    B number        : add number to back of list
+    E number        : eliminate all occurrences of number from the list
+    R number        : remove the first occurrence of number from the list
+    G number        : get number from the list
+    A               : return contents of head node
+    Z               : return contents of tail node
+    T               : pop the head node
+    K               : pop the tail node
+    N               : return the size of the list
+    P               : print all items in the list
+
 */
 #pragma once
 
@@ -43,248 +65,70 @@ public:
         switch (command) {
           // create list instance
           case 'C':
-            if (list != nullptr) {
-              delete list;
-            }
-            list = new DList<unsigned int>;
-            cout << "LIST CREATED" << endl;
+            create(list);
             break;
           // clear current list instance of nodes
           case 'X':
-            if (list != nullptr) {
-              list->clear();
-              cout << "LIST CLEARED" << endl;
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            clear(list);
             break;
           // delete current list instance
           case 'D':
-            if (list != nullptr) {
-              delete list;
-              list = nullptr;
-              cout << "LIST DELETED" << endl;
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            deletelist(list);
             break;
           // insert number into list in a sorted manner
           case 'I':
-            if (list != nullptr) {
-              int pos = input.find(" ");
-              string stringvalue = input.substr(pos + 1);
-              stringvalue = rmCarriageReturn(stringvalue);
-              int value;
-              try {
-                stringToInt(stringvalue, value);
-                list->insertSorted(value);
-                cout << "VALUE " << value << " INSERTED" << endl;
-              } catch (const exception &e) {
-                cerr << e.what() << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            insertSorted(input, list);
             break;
           // insert number at front of list
           case 'F':
-            if (list != nullptr) {
-              int pos = input.find(" ");
-              string stringvalue = input.substr(pos + 1);
-              stringvalue = rmCarriageReturn(stringvalue);
-              int value;
-              try {
-                stringToInt(stringvalue, value);
-                list->insertFront(value);
-                cout << "VALUE " << value << " ADDED TO HEAD" << endl;
-              } catch (const exception &e) {
-                cerr << e.what() << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            insertFront(input, list);
             break;
           // insert number at back of list
           case 'B':
-            if (list != nullptr) {
-              int pos = input.find(" ");
-              string stringvalue = input.substr(pos + 1);
-              stringvalue = rmCarriageReturn(stringvalue);
-              int value;
-              try {
-                stringToInt(stringvalue, value);
-                list->insertBack(value);
-                cout << "VALUE " << value << " ADDED TO TAIL" << endl;
-              } catch (const exception &e) {
-                cerr << e.what() << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            insertBack(input, list);
             break;
           // remove all of instances of a number
           case 'E':
-            if (list != nullptr) {
-              int pos = input.find(" ");
-              string stringvalue = input.substr(pos + 1);
-              stringvalue = rmCarriageReturn(stringvalue);
-              int value;
-              try {
-                stringToInt(stringvalue, value);
-                bool eliminated = list->eliminateAllOf(value);
-                if (eliminated) {
-                  cout << "VALUE " << value << " ELIMINATED" << endl;
-                }
-                else {
-                  cout << "VALUE " << value << " NOT FOUND" << endl;
-                }
-              } catch (const exception &e) {
-                cerr << e.what() << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            eliminateAllOf(input, list);
             break;
           // remove first instance of a number
           case 'R':
-            if (list != nullptr) {
-              int pos = input.find(" ");
-              string stringvalue = input.substr(pos + 1);
-              stringvalue = rmCarriageReturn(stringvalue);
-              int value;
-              try {
-                stringToInt(stringvalue, value);
-                bool eliminated = list->eliminateFirstOf(value);
-                if (eliminated) {
-                  cout << "VALUE " << value << " REMOVED" << endl;
-                }
-                else {
-                  cout << "VALUE " << value << " NOT FOUND" << endl;
-                }
-              } catch (const exception &e) {
-                cerr << e.what() << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            eliminateFirstOf(input, list);
             break;
           // find a value in list
           case 'G':
-            if (list != nullptr) {
-              int pos = input.find(" ");
-              string stringvalue = input.substr(pos + 1);
-              stringvalue = rmCarriageReturn(stringvalue);
-              int value;
-              try {
-                stringToInt(stringvalue, value);
-                if (list->get(value)) {
-                  cout << "VALUE " << value << " FOUND" << endl;
-                }
-                else {
-                  cout << "VALUE " << value << " NOT FOUND" << endl;
-                }
-              } catch (const exception &e) {
-                cerr << e.what() << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            get(input, list);
             break;
           // output head node value
           case 'A':
-            if (list != nullptr) {
-              if (list->getSize() != 0) {
-                cout << "VALUE " << list->getHead() << " AT HEAD" << endl;
-              }
-              else {
-                cout << "LIST EMPTY" << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            getHead(list);
             break;
           // output tail node value
           case 'Z':
-            if (list != nullptr) {
-              if (list->getSize() != 0) {
-                cout << "VALUE " << list->getTail() << " AT TAIL" << endl;
-              }
-              else {
-                cout << "LIST EMPTY" << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            getTail(list);
             break;
           // remove head node
           case 'T':
-            if (list != nullptr) {
-              if (list->getSize() != 0) {
-                list->popHead();
-                cout << "REMOVED HEAD" << endl;
-              }
-              else {
-                cout << "LIST EMPTY" << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            popHead(list);
             break;
           // remove tail node
           case 'K':
-            if (list != nullptr) {
-              if (list->getSize() != 0) {
-                list->popTail();
-                cout << "REMOVED TAIL" << endl;
-              }
-              else {
-                cout << "LIST EMPTY" << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            popTail(list);
             break;
           // print size of list
           case 'N':
-            if (list != nullptr) {
-              cout << "LIST SIZE IS " << list->getSize() << endl;
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            getSize(list);
             break;
           // print list contents
           case 'P':
-            if (list != nullptr) {
-              if (list->getSize() != 0) {
-                list->printList();
-              }
-              else {
-                cout << "LIST EMPTY" << endl;
-              }
-            }
-            else {
-              cout << "MUST CREATE LIST INSTANCE" << endl;
-            }
+            printList(list);
             break;
           // commented line in input file
           case '#':
             break;
           // unknown command in file
           default:
-            cerr << "Invalid input detected in input file." << endl;
+            cerr << "Invalid command detected in input file." << endl;
             break;
         }
       }
@@ -293,6 +137,253 @@ public:
     inFile.close();
   }
 private:
+  // create function creates a new list instance
+  void create(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      delete list;
+    }
+    list = new DList<unsigned int>;
+    cout << "LIST CREATED" << endl;
+  }
+
+  // clear clears the list instance of all contents
+  void clear(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      list->clear();
+      cout << "LIST CLEARED" << endl;
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  //deletelist deletes the list instance
+  void deletelist(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      delete list;
+      list = nullptr;
+      cout << "LIST DELETED" << endl;
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // insertSorted inserts an item into the list sorted
+  void insertSorted(string input, DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      int pos = input.find(" ");
+      string stringvalue = input.substr(pos + 1);
+      stringvalue = rmCarriageReturn(stringvalue);
+      try {
+        int value = stringToInt(stringvalue);
+        list->insertSorted(value);
+        cout << "VALUE " << value << " INSERTED" << endl;
+      } catch (const exception &e) {
+        cerr << e.what() << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // insertFront inserts an item into the list at the front of list
+  void insertFront(string input, DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      int pos = input.find(" ");
+      string stringvalue = input.substr(pos + 1);
+      stringvalue = rmCarriageReturn(stringvalue);
+      try {
+        int value = stringToInt(stringvalue);
+        list->insertFront(value);
+        cout << "VALUE " << value << " ADDED TO HEAD" << endl;
+      } catch (const exception &e) {
+        cerr << e.what() << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // insertBack inserts an item into the list at the back of the list
+  void insertBack(string input, DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      int pos = input.find(" ");
+      string stringvalue = input.substr(pos + 1);
+      stringvalue = rmCarriageReturn(stringvalue);
+      try {
+        int value = stringToInt(stringvalue);
+        list->insertBack(value);
+        cout << "VALUE " << value << " ADDED TO TAIL" << endl;
+      } catch (const exception &e) {
+        cerr << e.what() << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // eliminateAllOf eliminates all occurences of an item from the list
+  void eliminateAllOf(string input, DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      int pos = input.find(" ");
+      string stringvalue = input.substr(pos + 1);
+      stringvalue = rmCarriageReturn(stringvalue);
+      try {
+        int value = stringToInt(stringvalue);
+        bool eliminated = list->eliminateAllOf(value);
+        if (eliminated) {
+          cout << "VALUE " << value << " ELIMINATED" << endl;
+        }
+        else {
+          cout << "VALUE " << value << " NOT FOUND" << endl;
+        }
+      } catch (const exception &e) {
+        cerr << e.what() << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // eliminateFirstOf eliminates the first occurrence of an item from the list
+  void eliminateFirstOf(string input, DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      int pos = input.find(" ");
+      string stringvalue = input.substr(pos + 1);
+      stringvalue = rmCarriageReturn(stringvalue);
+      try {
+        int value = stringToInt(stringvalue);
+        bool eliminated = list->eliminateFirstOf(value);
+        if (eliminated) {
+          cout << "VALUE " << value << " REMOVED" << endl;
+        }
+        else {
+          cout << "VALUE " << value << " NOT FOUND" << endl;
+        }
+      } catch (const exception &e) {
+        cerr << e.what() << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // get searches the list for an item
+  void get(string input, DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      int pos = input.find(" ");
+      string stringvalue = input.substr(pos + 1);
+      stringvalue = rmCarriageReturn(stringvalue);
+      try {
+        int value = stringToInt(stringvalue);
+        if (list->get(value)) {
+          cout << "VALUE " << value << " FOUND" << endl;
+        }
+        else {
+          cout << "VALUE " << value << " NOT FOUND" << endl;
+        }
+      } catch (const exception &e) {
+        cerr << e.what() << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // getHead outputs the value of the head node from the list
+  void getHead(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      if (list->getSize() != 0) {
+        cout << "VALUE " << list->getHead() << " AT HEAD" << endl;
+      }
+      else {
+        cout << "LIST EMPTY" << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // getTail outputs the value of the tail node from the list
+  void getTail(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      if (list->getSize() != 0) {
+        cout << "VALUE " << list->getTail() << " AT TAIL" << endl;
+      }
+      else {
+        cout << "LIST EMPTY" << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // popHead removes the head node from the list
+  void popHead(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      if (list->getSize() != 0) {
+        list->popHead();
+        cout << "REMOVED HEAD" << endl;
+      }
+      else {
+        cout << "LIST EMPTY" << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // popTail removes the tail node from the list
+  void popTail(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      if (list->getSize() != 0) {
+        list->popTail();
+        cout << "REMOVED TAIL" << endl;
+      }
+      else {
+        cout << "LIST EMPTY" << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // getSize outputs the size of the list
+  void getSize(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      cout << "LIST SIZE IS " << list->getSize() << endl;
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
+  // printList prints the contents of the list
+  void printList(DList<unsigned int> *&list) {
+    if (list != nullptr) {
+      if (list->getSize() != 0) {
+        list->printList();
+      }
+      else {
+        cout << "LIST EMPTY" << endl;
+      }
+    }
+    else {
+      cout << "MUST CREATE LIST INSTANCE" << endl;
+    }
+  }
+
   // rmCarriageReturn removes '\r' from any input for POSIX compaitibility
   string rmCarriageReturn(string input) {
     input.erase(remove(input.begin(), input.end(), '\r'), input.end());
@@ -300,12 +391,12 @@ private:
   }
 
   // converts a string to an int and returns it
-  void stringToInt(string input, int &value) {
+  int stringToInt(string input) {
     for (int i = 0; i < input.size(); i++) {
       if (ispunct(input.at(i)) || isspace(input.at(i)) || isalpha(input.at(i))) {
         throw std::invalid_argument("VALUE PASSED IS NOT A NUMBER");
       }
     }
-    value = stoi(input);
+    return stoi(input);
   }
 };
