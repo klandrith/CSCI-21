@@ -12,7 +12,6 @@
 
 using std::cout;
 using std::endl;
-using std::swap;
 
 template <typename T>
 class DList {
