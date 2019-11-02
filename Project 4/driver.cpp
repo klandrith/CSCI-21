@@ -10,14 +10,9 @@
 
 */
 
-#include <string>
 #include <fstream>
-#include "bstree.hpp"
 #include "inputoutput.hpp"
-#include "word.h"
 
-using std::string;
-using std::cout;
 using std::endl;
 using std::ifstream;
 using std::cerr;
