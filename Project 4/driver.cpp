@@ -10,12 +10,7 @@
 
 */
 
-#include <fstream>
 #include "inputoutput.hpp"
-
-using std::endl;
-using std::ifstream;
-using std::cerr;
 
 // main that accepts a single command line argument for a filename
 int main (int argc, char *argv[]) {
