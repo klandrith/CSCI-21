@@ -151,12 +151,16 @@ class DList {
           // if current value of temp is head, change head to next node
           if (temp == head) {
             head = temp->next;
-            head->prev = nullptr;
+            if (head != nullptr) {
+              head->prev = nullptr;
+            }
           }
           // if current value of temp is tail, change tail to prev node
           if (temp == tail) {
             tail = temp->prev;
-            tail->next = nullptr;
+            if (tail != nullptr) {
+              tail->next = nullptr;
+            }
           }
           Node *temp2 = temp->next;
           delete temp;
@@ -190,12 +194,16 @@ class DList {
             // if current value of temp is head, change head to next node
             if (temp == head) {
               head = temp->next;
-              head->prev = nullptr;
+              if (head != nullptr) {
+                head->prev = nullptr;
+              }
             }
             // if current value of temp is tail, change tail to prev node
             if (temp == tail) {
               tail = temp->prev;
-              tail->next = nullptr;
+              if (tail != nullptr) {
+                tail->next = nullptr;
+              }
             }
             delete temp;
             size--;
