@@ -145,6 +145,9 @@ class DList {
            temp->prev->next = temp->next;
          }
          // if current value of temp is head, change head to next node
+         // and if new head is not nullptr, change head->prev to nullptr
+         // note: this is needed if head is the only node left in list and
+         // is going to be deleted
          else {
            head = temp->next;
            if (head != nullptr) {
@@ -156,6 +159,9 @@ class DList {
            temp->next->prev = temp->prev;
          }
          // if current value of temp is tail, change tail to prev node
+         // and if new tail is not nullptr, change tail->next to nullptr
+         // note: this is needed if tail is the only node left in list and
+         // is going to be deleted
          else {
           tail = temp->prev;
           if (tail != nullptr) {
@@ -184,10 +190,6 @@ class DList {
       if (temp != nullptr) {
         while (temp != nullptr) {
           if (temp->value == value) {
-            // if current value of temp is not tail, change next node's prev pointer
-            if (temp->next != nullptr) {
-              temp->next->prev = temp->prev;
-            }
             // if current value of temp is not head, change prev node's next pointer
             if (temp->prev != nullptr) {
               temp->prev->next = temp->next;
@@ -196,17 +198,21 @@ class DList {
             // and if new head is not nullptr, change head->prev to nullptr
             // note: this is needed if head is the only node left in list and
             // is going to be deleted
-            if (temp == head) {
+            else {
               head = temp->next;
               if (head != nullptr) {
                 head->prev = nullptr;
               }
             }
+            // if current value of temp is not tail, change next node's prev pointer
+            if (temp->next != nullptr) {
+              temp->next->prev = temp->prev;
+            }
             // if current value of temp is tail, change tail to prev node
             // and if new tail is not nullptr, change tail->next to nullptr
             // note: this is needed if tail is the only node left in list and
             // is going to be deleted
-            if (temp == tail) {
+            else {
               tail = temp->prev;
               if (tail != nullptr) {
                 tail->next = nullptr;
