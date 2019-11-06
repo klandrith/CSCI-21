@@ -146,8 +146,6 @@ class DList {
          }
          // if current value of temp is head, change head to next node
          // and if new head is not nullptr, change head->prev to nullptr
-         // note: this is needed if head is the only node left in list and
-         // is going to be deleted
          else {
            head = temp->next;
            if (head != nullptr) {
@@ -160,8 +158,6 @@ class DList {
          }
          // if current value of temp is tail, change tail to prev node
          // and if new tail is not nullptr, change tail->next to nullptr
-         // note: this is needed if tail is the only node left in list and
-         // is going to be deleted
          else {
           tail = temp->prev;
           if (tail != nullptr) {
@@ -196,8 +192,6 @@ class DList {
             }
             // if current value of temp is head, change head to next node
             // and if new head is not nullptr, change head->prev to nullptr
-            // note: this is needed if head is the only node left in list and
-            // is going to be deleted
             else {
               head = temp->next;
               if (head != nullptr) {
@@ -210,8 +204,6 @@ class DList {
             }
             // if current value of temp is tail, change tail to prev node
             // and if new tail is not nullptr, change tail->next to nullptr
-            // note: this is needed if tail is the only node left in list and
-            // is going to be deleted
             else {
               tail = temp->prev;
               if (tail != nullptr) {
