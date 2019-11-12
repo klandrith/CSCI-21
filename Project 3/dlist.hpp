@@ -238,12 +238,22 @@ class DList {
 
     // getNumberHead returns the value of the head node
     T getHead() {
-      return head->value;
+      if (size > 0) {
+        return head->value;
+      }
+      else {
+        throw std::logic_error("LIST EMPTY");
+      }
     }
 
     // getNumberTail returns the value of the tail node
     T getTail() {
-      return tail->value;
+      if (size > 0) {
+        return tail->value;
+      }
+      else {
+        throw std::logic_error("LIST EMPTY");
+      }
     }
 
     // popHead removes the head node from the list
@@ -261,6 +271,9 @@ class DList {
           delete temp;
         }
         size--;
+      }
+      else {
+        throw std::logic_error("LIST EMPTY");
       }
     }
 
@@ -280,6 +293,9 @@ class DList {
         }
         size--;
       }
+      else {
+        throw std::logic_error("LIST EMPTY");
+      }
     }
 
     // getSize returns the current size of the list
@@ -289,16 +305,22 @@ class DList {
 
     // printItems prints the items in the list via cout
     void printList() {
-      Node *temp = head;
-      while (temp != nullptr) {
-        if (temp->next != nullptr) {
-          cout << temp->value << ",";
+      if (size > 0) {
+        Node *temp = head;
+        while (temp != nullptr) {
+          if (temp->next != nullptr) {
+            cout << temp->value << ",";
+          }
+          if (temp->next == nullptr) {
+            cout << temp->value << endl;
+          }
+          temp = temp->next;
         }
-        if (temp->next == nullptr) {
-          cout << temp->value << endl;
-        }
-        temp = temp->next;
       }
+      else {
+        throw std::logic_error("LIST EMPTY");
+      }
+
     }
   private:
     unsigned int size; // number of nodes in the List

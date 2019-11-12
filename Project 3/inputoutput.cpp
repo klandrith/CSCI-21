@@ -128,7 +128,7 @@ void InputOutput::IOFunction(string filename) {
             break;
         }
       } catch (const exception &e) {
-        cerr << e.what() << endl;
+        cout << e.what() << endl;
       }
     }
   }
@@ -275,11 +275,8 @@ void InputOutput::get(string input, DList<unsigned int> *&list) {
 // getHead outputs the value of the head node from the list
 void InputOutput::getHead(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    if (list->getSize() != 0) {
+    if (list->getHead()) {
       cout << "VALUE " << list->getHead() << " AT HEAD" << endl;
-    }
-    else {
-      cout << "LIST EMPTY" << endl;
     }
   }
   else {
@@ -290,11 +287,8 @@ void InputOutput::getHead(DList<unsigned int> *&list) {
 // getTail outputs the value of the tail node from the list
 void InputOutput::getTail(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    if (list->getSize() != 0) {
+    if (list->getTail()) {
       cout << "VALUE " << list->getTail() << " AT TAIL" << endl;
-    }
-    else {
-      cout << "LIST EMPTY" << endl;
     }
   }
   else {
@@ -305,13 +299,8 @@ void InputOutput::getTail(DList<unsigned int> *&list) {
 // popHead removes the head node from the list
 void InputOutput::popHead(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    if (list->getSize() != 0) {
-      list->popHead();
-      cout << "REMOVED HEAD" << endl;
-    }
-    else {
-      cout << "LIST EMPTY" << endl;
-    }
+    list->popHead();
+    cout << "REMOVED HEAD" << endl;
   }
   else {
     cout << "MUST CREATE LIST INSTANCE" << endl;
@@ -321,13 +310,8 @@ void InputOutput::popHead(DList<unsigned int> *&list) {
 // popTail removes the tail node from the list
 void InputOutput::popTail(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    if (list->getSize() != 0) {
-      list->popTail();
-      cout << "REMOVED TAIL" << endl;
-    }
-    else {
-      cout << "LIST EMPTY" << endl;
-    }
+    list->popTail();
+    cout << "REMOVED TAIL" << endl;
   }
   else {
     cout << "MUST CREATE LIST INSTANCE" << endl;
@@ -347,12 +331,7 @@ void InputOutput::getSize(DList<unsigned int> *&list) {
 // printList prints the contents of the list
 void InputOutput::printList(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    if (list->getSize() != 0) {
-      list->printList();
-    }
-    else {
-      cout << "LIST EMPTY" << endl;
-    }
+    list->printList();
   }
   else {
     cout << "MUST CREATE LIST INSTANCE" << endl;
