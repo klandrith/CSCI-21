@@ -239,7 +239,7 @@ class DList {
     // getNumberHead returns the value of the head node
     T getHead() {
       if (size > 0) {
-        return head->value;
+        cout << "VALUE " << head->value << " AT HEAD" << endl;
       }
       else {
         throw std::logic_error("LIST EMPTY");
@@ -249,7 +249,7 @@ class DList {
     // getNumberTail returns the value of the tail node
     T getTail() {
       if (size > 0) {
-        return tail->value;
+        cout << "VALUE " << tail->value << " AT TAIL" << endl;
       }
       else {
         throw std::logic_error("LIST EMPTY");

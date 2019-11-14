@@ -152,7 +152,7 @@ void InputOutput::clear(DList<unsigned int> *&list) {
     cout << "LIST CLEARED" << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -164,7 +164,7 @@ void InputOutput::deletelist(DList<unsigned int> *&list) {
     cout << "LIST DELETED" << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -179,7 +179,7 @@ void InputOutput::insertSorted(string input, DList<unsigned int> *&list) {
     cout << "VALUE " << value << " INSERTED" << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -194,7 +194,7 @@ void InputOutput::insertFront(string input, DList<unsigned int> *&list) {
     cout << "VALUE " << value << " ADDED TO HEAD" << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -209,7 +209,7 @@ void InputOutput::insertBack(string input, DList<unsigned int> *&list) {
     cout << "VALUE " << value << " ADDED TO TAIL" << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -229,7 +229,7 @@ void InputOutput::eliminateAllOf(string input, DList<unsigned int> *&list) {
     }
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -249,7 +249,7 @@ void InputOutput::eliminateFirstOf(string input, DList<unsigned int> *&list) {
     }
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -268,31 +268,27 @@ void InputOutput::get(string input, DList<unsigned int> *&list) {
     }
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
 // getHead outputs the value of the head node from the list
 void InputOutput::getHead(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    if (list->getHead()) {
-      cout << "VALUE " << list->getHead() << " AT HEAD" << endl;
-    }
+    list->getHead();
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
 // getTail outputs the value of the tail node from the list
 void InputOutput::getTail(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    if (list->getTail()) {
-      cout << "VALUE " << list->getTail() << " AT TAIL" << endl;
-    }
+    list->getTail();
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -303,7 +299,7 @@ void InputOutput::popHead(DList<unsigned int> *&list) {
     cout << "REMOVED HEAD" << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -314,7 +310,7 @@ void InputOutput::popTail(DList<unsigned int> *&list) {
     cout << "REMOVED TAIL" << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -324,7 +320,7 @@ void InputOutput::getSize(DList<unsigned int> *&list) {
     cout << "LIST SIZE IS " << list->getSize() << endl;
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
@@ -334,7 +330,7 @@ void InputOutput::printList(DList<unsigned int> *&list) {
     list->printList();
   }
   else {
-    cout << "MUST CREATE LIST INSTANCE" << endl;
+    throw std::logic_error("MUST CREATE LIST INSTANCE");
   }
 }
 
