@@ -9,7 +9,11 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
+#include <string>
 
+using std::string;
+using std::stringstream;
 using std::cout;
 using std::endl;
 
@@ -239,7 +243,7 @@ class DList {
     // getNumberHead returns the value of the head node
     T getHead() {
       if (size > 0) {
-        cout << "VALUE " << head->value << " AT HEAD" << endl;
+        return head->value;
       }
       else {
         throw std::logic_error("LIST EMPTY");
@@ -249,7 +253,7 @@ class DList {
     // getNumberTail returns the value of the tail node
     T getTail() {
       if (size > 0) {
-        cout << "VALUE " << tail->value << " AT TAIL" << endl;
+        return tail->value;
       }
       else {
         throw std::logic_error("LIST EMPTY");
@@ -303,16 +307,17 @@ class DList {
       return size;
     }
 
-    // printItems prints the items in the list via cout
-    void printList() {
+    // printItems returns a string containing the items in the list via cout
+    string printList() {
+      stringstream stream;
       if (size > 0) {
         Node *temp = head;
         while (temp != nullptr) {
           if (temp->next != nullptr) {
-            cout << temp->value << ",";
+            stream << temp->value << ",";
           }
           if (temp->next == nullptr) {
-            cout << temp->value << endl;
+            stream << temp->value << endl;
           }
           temp = temp->next;
         }
@@ -320,7 +325,7 @@ class DList {
       else {
         throw std::logic_error("LIST EMPTY");
       }
-
+      return stream.str();
     }
   private:
     unsigned int size; // number of nodes in the List

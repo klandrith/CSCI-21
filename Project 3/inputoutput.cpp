@@ -276,6 +276,7 @@ void InputOutput::get(string input, DList<unsigned int> *&list) {
 void InputOutput::getHead(DList<unsigned int> *&list) {
   if (list != nullptr) {
     list->getHead();
+    cout << "VALUE " << list->getHead() << " AT HEAD" << endl;
   }
   else {
     throw std::logic_error("MUST CREATE LIST INSTANCE");
@@ -286,6 +287,7 @@ void InputOutput::getHead(DList<unsigned int> *&list) {
 void InputOutput::getTail(DList<unsigned int> *&list) {
   if (list != nullptr) {
     list->getTail();
+    cout << "VALUE " << list->getTail() << " AT TAIL" << endl;
   }
   else {
     throw std::logic_error("MUST CREATE LIST INSTANCE");
@@ -327,7 +329,7 @@ void InputOutput::getSize(DList<unsigned int> *&list) {
 // printList prints the contents of the list
 void InputOutput::printList(DList<unsigned int> *&list) {
   if (list != nullptr) {
-    list->printList();
+    cout << list->printList();
   }
   else {
     throw std::logic_error("MUST CREATE LIST INSTANCE");
