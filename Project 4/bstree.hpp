@@ -23,7 +23,7 @@ public:
   // Destructor.
   // Clear the tree.
   ~BSTree() {
-    clear();
+    clear(this->root);
   }
 
   // Returns the size (number of nodes) of this tree.
@@ -33,42 +33,41 @@ public:
 
   // Clear the tree of all nodes. Reset head to nullptr and size to 0.
   void clear() {
-    clear(root);
-    size = 0;
+    clear(this->root);
   }
 
   // Insert the data in the tree. Returns true if the data is not a
   // duplicate, and can be inserted. Returns false otherwise.
   bool insert(T data) {
-    return insert(data, root);
+    return insert(data, this->root);
   }
 
   // Find the target data in the tree. Returns true if target is found.
   // Returns false otherwise.
   bool find(T target) {
-    return find(target, root);
+    return find(target, this->root);
   }
 
   // Remove the target data from the tree. Returns true if the target
   // is found and removed. Returns false otherwise.
   bool remove(T target) {
-    return remove(target, root);
+    return remove(target, this->root);
   }
 
   // Return a pointer to the target data. Returns nullptr if the target
   // data is not found.
   T *get(T target) {
-    return get(target, root);
+    return get(target, this->root);
   }
 
   // Print the data in the tree to STDOUT, in-order (ascending).
   void printInOrder() {
-    printInOrder(root);
+    printInOrder(this->root);
   }
 
   // Print the data in the tree to STDOUT, reverse-order (descending).
   void printReverseOrder() {
-    printReverseOrder(root);
+    printReverseOrder(this->root);
   }
 
 private:
@@ -80,6 +79,7 @@ private:
     Node *leftChild;
     Node *rightChild;
 
+    // initilization list
     Node(T newData) : data(newData), leftChild(nullptr), rightChild(nullptr) {}
   } * root; // the root of the tree
 
@@ -95,40 +95,23 @@ private:
         troot = nullptr;
       }
       //a node having two children
-      else if (troot->leftChild != nullptr && troot->rightChild != nullptr) {
+      else {
         clear(troot->leftChild); // recursively clear the left tree
         clear(troot->rightChild); //recursively clear the right tree
         delete troot;
         troot = nullptr;
       }
-      //a node has only a left child
-      else if(troot->leftChild != nullptr) {
-        clear(troot->leftChild); //recursively clear the left tree
-        delete troot;
-        troot = nullptr;
-      }
-      //a node has only a right child
-      else if(troot->rightChild != nullptr) {
-        clear(troot->rightChild); //recursively clear the right tree
-        delete troot;
-        troot = nullptr;
-      }
     }
+    this->size = 0;
   }
 
   bool insert(T newData, Node *&troot) {
-    // check is newData already exists in tree, if so return false
-    // and don't insert it into tree
-    if (find(newData, troot)) {
-      return false;
-    }
     // if traversal down tree resulted in a nullptr on either right or left
     // side of current node, create newNode and assign memory location
     if (troot == nullptr) {
-      Node* newNode = new Node(newData);
-      troot = newNode;
+      troot = new Node(newData);
       // increment size variable and return true for successful insertion
-      size++;
+      this->size++;
       return true;
     }
     // traverse down left side of tree until insertion point if newData
@@ -138,8 +121,11 @@ private:
     }
     // traverse down right side of tree until insertion point if newData
     // is more than troot
-    else {
+    else if (newData > troot->data) {
       return insert(newData, troot->rightChild);
+    }
+    else if (newData == troot->data) {
+      return false;
     }
   }
 
@@ -180,7 +166,7 @@ private:
       if (troot->leftChild == nullptr && troot->rightChild == nullptr) {
         delete troot;
         troot = nullptr;
-        size--;
+        this->size--;
         return true;
       }
       // node has two children
@@ -189,7 +175,7 @@ private:
 
         removeMax(predecessorData, troot->leftChild);
         troot->data = predecessorData;
-        size--;
+        this->size--;
         return true;
       }
       // node to be deleted has only one child node
@@ -210,7 +196,7 @@ private:
         Node* current = troot;
         troot = child;
         delete current;
-        size--;
+        this->size--;
         return true;
       }
     }

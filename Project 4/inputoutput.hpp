@@ -108,7 +108,7 @@ public:
               break;
           }
         } catch (const exception &e) {
-          cerr << e.what() << endl;
+          cout << e.what() << endl;
         }
       }
     }
@@ -132,7 +132,7 @@ private:
       cout << "TREE CLEARED" << endl;
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -145,7 +145,7 @@ private:
       cout << "TREE DELETED" << endl;
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -166,9 +166,12 @@ private:
           cout << "WORD " << stringinput << " INCREMENTED" << endl;
         }
       }
+      else {
+        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+      }
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -180,7 +183,7 @@ private:
         string stringinput = input.substr(pos + 1);
         stringinput = rmCarriageReturn(stringinput);
         if (tree->getSize() == 0) {
-          cout << "TREE EMPTY" << endl;
+          throw std::logic_error("TREE EMPTY");
         }
         else if (tree->find(stringinput)) {
           cout << "FOUND " << stringinput << endl;
@@ -189,9 +192,12 @@ private:
           cout << stringinput << " NOT FOUND" << endl;
         }
       }
+      else {
+        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+      }
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -204,7 +210,7 @@ private:
         string stringinput = input.substr(pos + 1);
         stringinput = rmCarriageReturn(stringinput);
         if (tree->getSize() == 0) {
-          cout << "TREE EMPTY" << endl;
+          throw std::logic_error("TREE EMPTY");
         }
         else if (tree->remove(stringinput)) {
           cout << "REMOVED " << stringinput << endl;
@@ -213,9 +219,12 @@ private:
           cout << stringinput << " NOT FOUND" << endl;
         }
       }
+      else {
+        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+      }
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -228,7 +237,7 @@ private:
         string stringinput = input.substr(pos + 1);
         stringinput = rmCarriageReturn(stringinput);
         if (tree->getSize() == 0) {
-          cout << "TREE EMPTY" << endl;
+          throw std::logic_error("TREE EMPTY");
         }
         else if (tree->find(stringinput)) {
           Word* w = tree->get(stringinput);
@@ -239,9 +248,12 @@ private:
           cout << stringinput << " NOT FOUND" << endl;
         }
       }
+      else {
+        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+      }
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -251,7 +263,7 @@ private:
       cout << "TREE SIZE IS " << tree->getSize() << endl;
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -262,11 +274,11 @@ private:
         tree->printInOrder();
       }
       else {
-        cout << "TREE EMPTY" << endl;
+        throw std::logic_error("TREE EMPTY");
       }
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
@@ -277,11 +289,11 @@ private:
         tree->printReverseOrder();
       }
       else {
-        cout << "TREE EMPTY" << endl;
+        throw std::logic_error("TREE EMPTY");
       }
     }
     else {
-      cout << "MUST CREATE TREE INSTANCE" << endl;
+      throw std::logic_error("MUST CREATE TREE INSTANCE");
     }
   }
 
