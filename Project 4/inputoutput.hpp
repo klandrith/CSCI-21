@@ -167,7 +167,7 @@ private:
         }
       }
       else {
-        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+        throw std::invalid_argument("NO VALUE PASSED AFTER COMMAND");
       }
     }
     else {
@@ -193,7 +193,7 @@ private:
         }
       }
       else {
-        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+        throw std::invalid_argument("NO VALUE PASSED AFTER COMMAND");
       }
     }
     else {
@@ -220,7 +220,7 @@ private:
         }
       }
       else {
-        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+        throw std::invalid_argument("NO VALUE PASSED AFTER COMMAND");
       }
     }
     else {
@@ -249,7 +249,7 @@ private:
         }
       }
       else {
-        throw std::logic_error("NO VALUE PASSED AFTER COMMAND");
+        throw std::invalid_argument("NO VALUE PASSED AFTER COMMAND");
       }
     }
     else {
