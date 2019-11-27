@@ -7,7 +7,7 @@
 */
 #include <iostream>
 #include <fstream>
-#include "inputoutput.hpp"
+#include "inputoutput.h"
 
 using std::endl;
 using std::ifstream;
